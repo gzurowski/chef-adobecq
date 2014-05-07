@@ -51,20 +51,20 @@ unless File.exists?("#{cq_home}/crx-quickstart")
 
     # wait for installation to complete
     ruby_block "check-installation-status" do
-    	block do
-	    	isInstalled = false
-    		while !isInstalled do
-    			if File.exists?("#{cq_home}/crx-quickstart/logs/stderr.log") && File.read("#{cq_home}/crx-quickstart/logs/stderr.log").include?("Installation time")
-	    			isInstalled = true
-    				break
-    			end
-    			Chef::Log.info("Waiting 15 seconds for installation to complete...")
-    			sleep(15)
-    		end
-    		installer_pid = File.read("/tmp/cqinstall.pid")
-    		Process.kill("HUP", installer_pid.to_i)
-    	end
-    	action :nothing
+        block do
+            isInstalled = false
+            while !isInstalled do
+                if File.exists?("#{cq_home}/crx-quickstart/logs/stderr.log") && File.read("#{cq_home}/crx-quickstart/logs/stderr.log").include?("Installation time")
+                    isInstalled = true
+                    break
+                end
+                Chef::Log.info("Waiting 15 seconds for installation to complete...")
+                sleep(15)
+            end
+            installer_pid = File.read("/tmp/cqinstall.pid")
+            Process.kill("HUP", installer_pid.to_i)
+        end
+        action :nothing
     end
 
     directory cq_home do

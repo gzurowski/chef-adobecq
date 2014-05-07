@@ -16,16 +16,16 @@ fi
 
 case "$1" in
 start)
-	$SU - ${CQ_USER} -s /bin/sh -c ${START}
+    $SU - ${CQ_USER} -s /bin/sh -c ${START}
 ;;
 stop)
-	$SU - ${CQ_USER} -s /bin/sh -c ${STOP}
+    $SU - ${CQ_USER} -s /bin/sh -c ${STOP}
 ;;
 status)
-	$SU - ${CQ_USER} -s /bin/sh -c ${STATUS}
+    $SU - ${CQ_USER} -s /bin/sh -c ${STATUS}
 ;;
 *)
-	echo "Usage: $0 (stop|start|status)"
+    echo "Usage: $0 (stop|start|status)"
 ;;
 esac
 
