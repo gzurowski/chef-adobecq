@@ -1,0 +1,32 @@
+#!/bin/sh
+
+CQ_HOME="<%= "#{node['cq']['home']}/cq-#{node['cq']['version']}" %>"
+CQ_USER="<%= "#{node['cq']['uid']}" %>"
+
+START="${CQ_HOME}/crx-quickstart/bin/start"
+STOP="${CQ_HOME}/crx-quickstart/bin/stop"
+STATUS="${CQ_HOME}/crx-quickstart/bin/status"
+
+# For SELinux we need to use 'runuser' not 'su'
+if [ -x "/sbin/runuser" ]; then
+    SU="/sbin/runuser"
+else
+    SU="su"
+fi
+
+case "$1" in
+start)
+	$SU - ${CQ_USER} -s /bin/sh -c ${START}
+;;
+stop)
+	$SU - ${CQ_USER} -s /bin/sh -c ${STOP}
+;;
+status)
+	$SU - ${CQ_USER} -s /bin/sh -c ${STATUS}
+;;
+*)
+	echo "Usage: $0 (stop|start|status)"
+;;
+esac
+
+exit 0

@@ -1,0 +1,10 @@
+default['cq']['version'] = '5.5'
+default['cq']['home'] = '/opt'
+default['cq']['uid'] = 'cq'
+default['cq']['gid'] = 'cq'
+
+default['cq']['runmode'] = 'author'
+default['cq']['port'] = '4502'
+default['cq']['install_jar_source'] = 'cq-quickstart-5.5.0-20120220.jar'
+default['cq']['heap_max'] = '1088'
+default['cq']['perm_max'] = '256'
